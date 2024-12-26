@@ -37,4 +37,4 @@
 !/app/assets/builds/.keep
 
 # .gitignore
-./node_modules
+node_modules/
