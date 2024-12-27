@@ -1,70 +1,47 @@
 class LogsController < ApplicationController
-  before_action :set_log, only: %i[ show edit update destroy ]
-
-  # GET /logs or /logs.json
   def index
     @logs = Log.all
   end
 
-  # GET /logs/1 or /logs/1.json
   def show
+    @log = Log.find(params[:id])
   end
 
-  # GET /logs/new
   def new
     @log = Log.new
   end
 
-  # GET /logs/1/edit
-  def edit
-  end
-
-  # POST /logs or /logs.json
   def create
     @log = Log.new(log_params)
-
-    respond_to do |format|
-      if @log.save
-        format.html { redirect_to @log, notice: "Log was successfully created." }
-        format.json { render :show, status: :created, location: @log }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @log.errors, status: :unprocessable_entity }
-      end
+    if @log.save
+      redirect_to @log
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /logs/1 or /logs/1.json
+  def edit
+    @log = Log.find(params[:id])
+  end
+
   def update
-    respond_to do |format|
-      if @log.update(log_params)
-        format.html { redirect_to @log, notice: "Log was successfully updated." }
-        format.json { render :show, status: :ok, location: @log }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @log.errors, status: :unprocessable_entity }
-      end
+    @log = Log.find(params[:id])
+    if @log.update(log_params)
+      redirect_to @log
+    else
+      render :edit
     end
   end
 
-  # DELETE /logs/1 or /logs/1.json
   def destroy
-    @log.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to logs_path, status: :see_other, notice: "Log was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @log = Log.find(params[:id])
+    @log.destroy
+    redirect_to logs_path
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_log
-      @log = Log.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def log_params
-      params.fetch(:log, {})
-    end
+  def log_params
+    params.require(:log).permit(:customer_id, :action)
+  end
 end

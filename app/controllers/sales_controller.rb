@@ -1,70 +1,47 @@
 class SalesController < ApplicationController
-  before_action :set_sale, only: %i[ show edit update destroy ]
-
-  # GET /sales or /sales.json
   def index
     @sales = Sale.all
   end
 
-  # GET /sales/1 or /sales/1.json
   def show
+    @sale = Sale.find(params[:id])
   end
 
-  # GET /sales/new
   def new
     @sale = Sale.new
   end
 
-  # GET /sales/1/edit
-  def edit
-  end
-
-  # POST /sales or /sales.json
   def create
     @sale = Sale.new(sale_params)
-
-    respond_to do |format|
-      if @sale.save
-        format.html { redirect_to @sale, notice: "Sale was successfully created." }
-        format.json { render :show, status: :created, location: @sale }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @sale.errors, status: :unprocessable_entity }
-      end
+    if @sale.save
+      redirect_to @sale
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /sales/1 or /sales/1.json
+  def edit
+    @sale = Sale.find(params[:id])
+  end
+
   def update
-    respond_to do |format|
-      if @sale.update(sale_params)
-        format.html { redirect_to @sale, notice: "Sale was successfully updated." }
-        format.json { render :show, status: :ok, location: @sale }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @sale.errors, status: :unprocessable_entity }
-      end
+    @sale = Sale.find(params[:id])
+    if @sale.update(sale_params)
+      redirect_to @sale
+    else
+      render :edit
     end
   end
 
-  # DELETE /sales/1 or /sales/1.json
   def destroy
-    @sale.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to sales_path, status: :see_other, notice: "Sale was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @sale = Sale.find(params[:id])
+    @sale.destroy
+    redirect_to sales_path
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_sale
-      @sale = Sale.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def sale_params
-      params.fetch(:sale, {})
-    end
+  def sale_params
+    params.require(:sale).permit(:customer_id, :amount, :date)
+  end
 end
