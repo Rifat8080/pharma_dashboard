@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  doctor: one
+  medications: MyText
+  instructions: MyText
+  id: 
+
+two:
+  customer: two
+  doctor: two
+  medications: MyText
+  instructions: MyText
+  id: 
