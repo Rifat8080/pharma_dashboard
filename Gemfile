@@ -7,8 +7,8 @@ gem "propshaft"
 # Use pg as the database for Active Record
 gem "pg"
 
-#use devise for authentication
-gem 'devise'
+# use devise for authentication
+gem "devise"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"

@@ -3,7 +3,7 @@ class Sale < ApplicationRecord
   belongs_to :customer
   has_many :sale_items, dependent: :destroy
   has_many :inventories, through: :sale_items
- 
+
 
   validates :customer_id, :amount, presence: true
   validates :amount, numericality: true
