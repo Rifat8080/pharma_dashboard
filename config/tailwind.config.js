@@ -11,7 +11,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        Outfit: ["Outfit", "sans-serif"],
+      },
+      colors: {
+        lightGreen: '#6DC13D',
+        darkPurple: '#302C51',
+        accent: '#F59E0B',
+        neutral: '#64748B',
+        base: '#FFFFFF',
       },
     },
   },

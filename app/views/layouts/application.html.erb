@@ -24,8 +24,25 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+    <main class=" min-h-screen">
+    <%=render "admin_layout/sidebar"%>
+     <div class="mt-16 lg:ml-64">
+      <% if flash.any? %>
+            <div class="text-center mb-2 p-2">
+              <% flash.each do |type, message| %>
+                <div class="p-4 mb-4 text-sm font-medium rounded-lg font-Outfit
+                  <%= 'bg-green-100 text-green-800' if type == 'notice' %>
+                  <%= 'bg-red-100 text-red-800' if type == 'alert' %>
+                  <%= 'bg-yellow-100 text-yellow-800' if type == 'warning' %>
+              ">
+                  <%= message %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+          <%= yield %>
+        </div>
+
     </main>
   </body>
 </html>

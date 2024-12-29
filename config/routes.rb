@@ -14,5 +14,5 @@ Rails.application.routes.draw do
 
   # You can add additional routes or custom routes here
 
-  root "sales#index" # Assuming you have a home controller with an index action
+  root "sales#index" # Setting the root to the sales index action
 end
