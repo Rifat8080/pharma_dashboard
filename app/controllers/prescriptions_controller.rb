@@ -9,6 +9,7 @@ class PrescriptionsController < ApplicationController
 
   def new
     @prescription = Prescription.new
+    @customers = Customer.all
   end
 
   def create
