@@ -1,15 +1,20 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
+<!-- filepath: /Users/mdmahadihasanrifat/Documents/pharma_dashboard/app/views/inventories/show.html.erb -->
+<div class="mx-auto md:w-2/3 w-full flex flex-col items-center">
+  <div class="w-full p-6 bg-white rounded-lg shadow-md">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
-    <%= render @inventory %>
+    <h1 class="text-3xl font-bold mb-4"><%= @inventory.name %></h1>
+    <p class="text-gray-700 mb-2"><strong>Description:</strong> <%= @inventory.description %></p>
+    <p class="text-gray-700 mb-2"><strong>Quantity:</strong> <%= @inventory.quantity %></p>
+    <p class="text-gray-700 mb-2"><strong>Price:</strong> $<%= @inventory.price %></p>
+    <p class="text-gray-700 mb-2"><strong>Cost Price:</strong> $<%= @inventory.cost_price %></p>
 
-    <%= link_to "Edit this inventory", edit_inventory_path(@inventory), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Back to inventories", inventories_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this inventory", @inventory, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <div class="mt-4 flex space-x-2">
+      <%= link_to "Edit this inventory", edit_inventory_path(@inventory), class: "rounded-lg py-3 px-5 bg-blue-600 text-white font-medium" %>
+      <%= link_to "Back to inventories", inventories_path, class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to "Destroy this inventory", @inventory, method: :delete, data: { confirm: "Are you sure?" }, class: "rounded-lg py-3 px-5 bg-red-600 text-white font-medium" %>
     </div>
   </div>
 </div>

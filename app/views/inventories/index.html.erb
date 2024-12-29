@@ -2,20 +2,40 @@
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
-
   <% content_for :title, "Inventories" %>
-
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Inventories</h1>
-    <%= link_to "New inventory", new_inventory_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to "New Inventory", new_inventory_path, class: "rounded-lg py-3 px-5 bg-lightGreen text-white block font-medium" %>
   </div>
 
-  <div id="inventories" class="min-w-full">
-    <% @inventories.each do |inventory| %>
-      <%= render inventory %>
-      <p>
-        <%= link_to "Show this inventory", inventory, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
-    <% end %>
+  <div id="inventories" class="min-w-full mt-5 p-5">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+          <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+          <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+          <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+          <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Cost Price</th>
+          <th scope="col-3" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <% @inventories.each do |inventory| %>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><%= inventory.name %></td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><%= inventory.description %></td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><%= inventory.quantity %></td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">৳<%= inventory.price %></td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">৳<%= inventory.cost_price %></td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <%= link_to "Show", inventory, class: "text-indigo-600 hover:text-indigo-900" %>
+              <%= link_to "Edit", edit_inventory_path(inventory), class: "ml-4 text-indigo-600 hover:text-indigo-900" %>
+              <%= link_to "Delete", inventory, method: :delete, data: { confirm: "Are you sure?" }, class: "ml-4 text-red-600 hover:text-red-900" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
