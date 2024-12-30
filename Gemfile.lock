@@ -177,9 +177,9 @@ GEM
       net-protocol
     net-ssh (7.3.0)
     nio4r (2.7.4)
-    nokogiri (1.18.0-arm64-darwin)
+    nokogiri (1.18.1-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.0-x86_64-linux-gnu)
+    nokogiri (1.18.1-x86_64-linux-gnu)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     ostruct (0.6.1)
@@ -313,7 +313,7 @@ GEM
     stringio (3.1.2)
     syntax_tree (6.2.0)
       prettier_print (>= 1.2.0)
-    tailwindcss-rails (3.0.0)
+    tailwindcss-rails (3.1.0)
       railties (>= 7.0.0)
       tailwindcss-ruby
     tailwindcss-ruby (3.4.17-arm64-darwin)
@@ -371,7 +371,7 @@ DEPENDENCIES
   solid_cache
   solid_queue
   stimulus-rails
-  tailwindcss-rails (~> 3.0)
+  tailwindcss-rails (~> 3.1)
   thruster
   turbo-rails
   tzinfo-data
